@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 600" width="100%" height="100%">
+  <rect width="940" height="600" fill="rgb(15, 23, 42)" rx="8"/>
+  <rect width="940" height="38" fill="rgb(30, 41, 59)" rx="8"/>
+  <circle cx="20" cy="19" r="6" fill="rgb(239, 68, 68)"/>
+  <circle cx="38" cy="19" r="6" fill="rgb(245, 158, 11)"/>
+  <circle cx="56" cy="19" r="6" fill="rgb(34, 197, 94)"/>
+  <text x="310" y="24" fill="rgb(148, 163, 184)" font-family="Segoe UI, -apple-system, sans-serif" font-size="12">Terminal: Git Reflog Commit Recovery</text>
+
+  <g font-family="Courier New, Consolas, monospace" font-size="13">
+    <!-- Step 1: Accidental reset -->
+    <text x="24" y="66" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="66" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="66" fill="rgb(239, 68, 68)">git reset --hard HEAD~1</text>
+    <text x="24" y="88" fill="rgb(203, 213, 225)">HEAD is now at a1b2c3d feat: khoi tao ma nguon co so</text>
+
+    <!-- Step 2: Check git log (lost commit) -->
+    <text x="24" y="122" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="122" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="122" fill="rgb(56, 189, 248)">git log --oneline</text>
+    <text x="24" y="146" fill="rgb(245, 158, 11)">a1b2c3d</text>
+    <text x="95" y="146" fill="rgb(248, 250, 252)"> (HEAD -&gt; main) feat: khoi tao ma nguon co so</text>
+
+    <!-- Step 3: Run git reflog -->
+    <text x="24" y="184" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="184" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="184" fill="rgb(56, 189, 248)">git reflog</text>
+    <text x="24" y="210" fill="rgb(245, 158, 11)">a1b2c3d</text>
+    <text x="95" y="210" fill="#38bdf8"> HEAD@{0}: </text>
+    <text x="185" y="210" fill="rgb(239, 68, 68)">reset: moving to HEAD~1</text>
+
+    <text x="24" y="232" fill="rgb(34, 197, 94)" font-weight="bold">e3a5b2c</text>
+    <text x="95" y="232" fill="#38bdf8"> HEAD@{1}: </text>
+    <text x="185" y="232" fill="rgb(34, 197, 94)" font-weight="bold">commit: Them tinh nang quan trong</text>
+
+    <text x="24" y="254" fill="rgb(245, 158, 11)">a1b2c3d</text>
+    <text x="95" y="254" fill="#38bdf8"> HEAD@{2}: </text>
+    <text x="185" y="254" fill="rgb(203, 213, 225)">commit (initial): feat: khoi tao ma nguon co so</text>
+
+    <!-- Step 4: Restore via reflog hash -->
+    <text x="24" y="294" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="294" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="294" fill="rgb(56, 189, 248)">git reset --hard e3a5b2c</text>
+    <text x="24" y="320" fill="rgb(34, 197, 94)" font-weight="bold">HEAD is now at e3a5b2c Them tinh nang quan trong</text>
+
+    <!-- Step 5: Check git log after restore -->
+    <text x="24" y="358" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="358" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="358" fill="rgb(56, 189, 248)">git log --oneline</text>
+    <text x="24" y="384" fill="rgb(34, 197, 94)" font-weight="bold">e3a5b2c</text>
+    <text x="95" y="384" fill="rgb(248, 250, 252)"> (HEAD -&gt; main) Them tinh nang quan trong</text>
+    <text x="24" y="406" fill="rgb(245, 158, 11)">a1b2c3d</text>
+    <text x="95" y="406" fill="rgb(203, 213, 225)"> feat: khoi tao ma nguon co so</text>
+
+    <!-- Step 6: Verify file content -->
+    <text x="24" y="446" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="446" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="446" fill="rgb(56, 189, 248)">cat feature.txt</text>
+    <text x="24" y="472" fill="rgb(34, 197, 94)" font-weight="bold">Day la tinh nang quan trong</text>
+
+    <!-- Step 7: git status clean -->
+    <text x="24" y="510" fill="rgb(34, 197, 94)">devops@workstation</text>
+    <text x="180" y="510" fill="rgb(248, 250, 252)">:~/repo$ </text>
+    <text x="260" y="510" fill="rgb(56, 189, 248)">git status</text>
+    <text x="24" y="534" fill="rgb(203, 213, 225)">On branch main. Nothing to commit, working tree clean.</text>
+  </g>
+</svg>
